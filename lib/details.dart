@@ -8,13 +8,13 @@ class Details extends StatelessWidget {
   Details({this.pokemon});
 
   List <Widget> _prev = [
-    Card(child: Text('Previous evolution doesnot exist.'),
+    Card(child: Text('This is the Base Form.', style: TextStyle(fontWeight: FontWeight.w500),),
     elevation: 0.0,
     )
   ];
 
   List <Widget> _next = [
-    Card(child: Text('Next evolution doesnot exist.'),
+    Card(child: Text('This is the most Advanced Form.', style: TextStyle(fontWeight: FontWeight.w500),),
     elevation: 0.0,
     ),
   ];
@@ -39,21 +39,30 @@ class Details extends StatelessWidget {
                     style:
                         TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   ),
+                  SizedBox(height: 5.0),
                   Text("Height: ${pokemon.height}"),
+                  SizedBox(height: 5.0),
                   Text("Weight: ${pokemon.weight}"),
+                  SizedBox(height: 10.0),
                   Text("Types", style: TextStyle(fontWeight: FontWeight.bold),),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: pokemon.type
-                        .map(
-                          (t) => FilterChip(
-                              backgroundColor: Colors.amber,
-                              label: Text(
-                                t,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onSelected: (b) {}),
-                        ).toList(),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: pokemon.type
+                          .map(
+                            (t) => Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: FilterChip(
+                                  backgroundColor: Colors.green,
+                                  label: Text(
+                                    t,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  onSelected: (b) {}),
+                            ),
+                          ).toList(),
+                    ),
                   ),
                   Text("Weakness", style: TextStyle(fontWeight: FontWeight.bold)),
                   SingleChildScrollView(
@@ -62,7 +71,7 @@ class Details extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: pokemon.weaknesses
                           .map((w) => Padding(
-                            padding: const EdgeInsets.all(20.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
                             child: FilterChip(
                                   backgroundColor: Colors.red,
                                   label: Text(w,
@@ -74,25 +83,41 @@ class Details extends StatelessWidget {
                     ),
                   ),
                   Text("Previous Evolution", style: TextStyle(fontWeight: FontWeight.bold)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: pokemon.prevEvolution == null ? _prev :pokemon.prevEvolution
-                        .map((p) => FilterChip(
-                              backgroundColor: Colors.blueGrey,
-                              label: Text(p.name,
-                                  style: TextStyle(color: Colors.white)),
-                              onSelected: (b) {},
-                            )).toList(),
+                  SizedBox(height:5.0),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: pokemon.prevEvolution == null ? _prev :pokemon.prevEvolution
+                          .map((p) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: FilterChip(
+                                  backgroundColor: Colors.blueGrey,
+                                  label: Text(p.name,
+                                      style: TextStyle(color: Colors.white)),
+                                  onSelected: (b) {},
+                                ),
+                          )).toList(),
+                    ),
                   ),
+                  SizedBox(height: 5.0),
                   Text("Next Evolution", style: TextStyle(fontWeight: FontWeight.bold)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: pokemon.nextEvolution == null ? _next :pokemon.nextEvolution
-                        .map((n) => FilterChip(
-                            backgroundColor: Colors.purple,
-                            label: Text(n.name,
-                                style: TextStyle(color: Colors.white)),
-                            onSelected: (b) {})).toList(),
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: pokemon.nextEvolution == null ? _next :pokemon.nextEvolution
+                            .map((n) => Padding(
+                              padding: const EdgeInsets.all(1.0),
+                              child: FilterChip(
+                                  backgroundColor: Colors.purple,
+                                  label: Text(n.name,
+                                      style: TextStyle(color: Colors.white)),
+                                  onSelected: (b) {}),
+                            )).toList(),
+                      ),
+                    ),
                   )
                 ],
               ),
