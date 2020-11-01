@@ -78,7 +78,7 @@ class LandingPage extends StatelessWidget {
             child: Hero(
               tag: poke.img,
               child: Card(
-                elevation: 4.0,
+                elevation: 5.0,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

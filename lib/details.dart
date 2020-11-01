@@ -56,16 +56,22 @@ class Details extends StatelessWidget {
                         ).toList(),
                   ),
                   Text("Weakness", style: TextStyle(fontWeight: FontWeight.bold)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: pokemon.weaknesses
-                        .map((w) => FilterChip(
-                              backgroundColor: Colors.red,
-                              label: Text(w,
-                                  style: TextStyle(color: Colors.white)),
-                              onSelected: (b) {},
-                            ))
-                        .toList(),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: pokemon.weaknesses
+                          .map((w) => Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: FilterChip(
+                                  backgroundColor: Colors.red,
+                                  label: Text(w,
+                                      style: TextStyle(color: Colors.white)),
+                                  onSelected: (b) {},
+                                ),
+                          ))
+                          .toList(),
+                    ),
                   ),
                   Text("Previous Evolution", style: TextStyle(fontWeight: FontWeight.bold)),
                   Row(
